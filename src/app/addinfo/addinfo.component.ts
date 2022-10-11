@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-addinfo',
@@ -7,8 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddinfoComponent implements OnInit {
 
-  constructor() { }
-  usdata=[]
+  constructor(private myapi:ApiService) { 
+    this.fetchdata()
+  }
+  fetchdata=()=>{
+    this.myapi.viewaddinfo().subscribe(
+      (data)=>{
+        this.usdata=data
+      }
+    )
+  }
+  usdata:any=[]
 
   ngOnInit(): void {
   }
